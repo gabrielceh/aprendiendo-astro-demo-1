@@ -1,0 +1,45 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getLauncheByID, getLaunches } from "@/services/spacex.service"
+import Layout from "@/layouts/Layout.astro";
+
+// esto haria que funcione en server, revisar el astro.cofig
+export const prerender = false 
+
+const {id} = Astro.params
+
+// if(!id){ // -> solo para el servidor
+// 	return Astro.redirect("/") 
+// }
+
+let launch = null
+if(id){
+	// console.log(id);
+	launch = await getLauncheByID(id)
+}
+
+// rendetizado estatico
+// Es bueno usarlo en caso de que sepamos cuantas páginas hay y sean un numero limitado
+// export async function getStaticPaths() {
+// 	// return [
+// 	// 	{params: {id:"5eb87cd9ffd86e000604b32a"}},
+// 	// ]
+// 	// Aqui tambien se puede llamar a una Api para saber todas las id d generar
+// 	const launches = await getLaunches()
+
+// 	return launches.map(launch => ({params:{id:launch.id}}))
+// }
+
+---
+<Layout title={launch?.name ?? "Template"}>
+
+	<div>
+		{
+			id && <div class="flex flex-col items-center gap-4">
+					<img src={launch?.links.patch.small} alt={launch?.name}>
+					<h4 class="text-2xl font-bol">{launch?.name}</h4>
+					<p class="text-lg">{launch?.details}</p>
+				</div>
+		}
+</div>
+</Layout>
