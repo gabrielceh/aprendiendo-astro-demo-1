@@ -3,7 +3,7 @@
 // para añadir tailwind usamos el comando pnpm astro add tailwind
 // --> https://docs.astro.build/en/guides/aliases/
 import Layout from '@/layouts/Layout.astro'; 
-import Header from "@/components/Header.astro"
+import Launches from '@/components/Launches.astro';
 
 console.log("Aqui va el js/ts")
 
@@ -11,8 +11,7 @@ console.log("Aqui va el js/ts")
 
 <!-- Esto es lo que se rendieriza -->
 <Layout title="SpaceX Launches">
-	<h1>Esta es la pagina principal</h1>
-
+	<Launches/>
 </Layout>
 
 <!-- Estos son los estilos
