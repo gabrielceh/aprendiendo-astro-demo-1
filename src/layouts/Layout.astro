@@ -2,6 +2,7 @@
 /**Los layouts son componentes especiales que envuelven nuestra aplicacion */
 
 import Header from '@/components/Header.astro';
+import { ViewTransitions } from 'astro:transitions'; // activamos la viewTransition en el head
 
 interface Props {
 	title: string;
@@ -20,6 +21,7 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ViewTransitions transition:animate={"slide"}/>
 	</head>
 	<body class="bg-gray-900 min-h-screen pb-32">
 		<Header/>

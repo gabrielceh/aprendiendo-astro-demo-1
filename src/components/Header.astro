@@ -1,11 +1,14 @@
 ---
+import { Counter } from "./Counter";
 import HeaderButton from "./HeaderButton.astro";
 import ClockIcon from "./icons/ClockIcon.astro";
 import InfoIcon from "./icons/InfoIcon.astro"
-import RocketIcon from "./icons/RocketIcon.astro" 
----
+import RocketIcon from "./icons/RocketIcon.astro"
 
-<header class="py-8 px-4 mx-auto max-w-xl lg:py:16 lg:px-6">
+
+---
+<!-- Transition:persist indica que si un componente es dinamico, mantendrá su estado entre el cambio de paginas -->
+<header transition:persist class="py-8 px-4 mx-auto max-w-xl lg:py:16 lg:px-6">
 	<div class="mx-auto text-center mb-8 lg:mb-16">
 		<h2 class="mb-4 text-5xl tracking-tight font-extrabold text-white">
 			SpaceX Launches 🚀
@@ -21,4 +24,10 @@ import RocketIcon from "./icons/RocketIcon.astro"
 		<HeaderButton href="/about"> <InfoIcon slot="after-text"/>Sobre el proyecto</HeaderButton>
 		<HeaderButton href="/oldest"><ClockIcon slot="after-text"/> Lanzamientos más antiguos</HeaderButton>
 	</nav>
+
+	<!--Por defecto los componentes dinamicos son estaticos
+		Para que sean dinamicos debemos indicar el client con una directiva
+		por lo general será visible
+	-->
+	<Counter client:visible />
 </header>
